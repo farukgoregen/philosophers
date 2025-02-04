@@ -1,7 +1,7 @@
 NAME = philo 
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 RM = rm -rf
 
 SRC = philo.c life_philo.c control_and_init.c \

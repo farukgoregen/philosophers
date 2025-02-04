@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:44:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/01 15:17:43 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:52:41 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct s_philo
 {
@@ -25,7 +26,6 @@ typedef struct s_philo
     pthread_t   thread;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *right_fork;
-    pthread_mutex_t *mutex;
     struct s_general *data;
 }               t_philo;
 
@@ -37,6 +37,7 @@ typedef struct s_general
     int     sleeping_time;
     int     nmeals;
     pthread_mutex_t *forks;
+    pthread_mutex_t *dead;
     struct s_philo *philo;
 }       t_general;
 
@@ -47,4 +48,7 @@ void printsss(t_general *data);
 void init_philosop(t_general *data);
 void    start_phlosop(t_general *data);
 void    *life_cycle(void *arg);
+void eating(t_philo *philo);
+void thinking(t_philo *philo);
+void sleeping(t_philo *philo);
 #endif

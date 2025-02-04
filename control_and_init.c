@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/01 14:49:28 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:46:59 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int    control_philo(char **str)
     {
         if (ft_atoi(str[j]) <= 0)
             return (-1);
+
         j++;
     }
     return 0;
@@ -58,17 +59,17 @@ void    add_philo(char  **str, t_general *data)
     j = 0;
     while (str[j])
     {
-        if(j == 0)
+        if (j == 0)
             data->number_of_philo = ft_atoi(str[j]);
-		else if (j == 1)
-			data->death_time = ft_atoi(str[j]);
-		else if (j == 2)
-			data->eating_time = ft_atoi(str[j]);
-		else if(j == 3)
-			data->sleeping_time = ft_atoi(str[j]);
+        else if (j == 1)
+            data->death_time = ft_atoi(str[j]);
+        else if (j == 2)
+            data->eating_time = ft_atoi(str[j]);
+        else if (j == 3)
+            data->sleeping_time = ft_atoi(str[j]);
         else if (j == 4)
-			data->nmeals = ft_atoi(str[j]);
-		j++;
+            data->nmeals = ft_atoi(str[j]);
+        j++;
     }
 }
 
