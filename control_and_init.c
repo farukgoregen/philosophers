@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/06 12:25:09 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:25:17 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void init_philosop(t_general *data)
         pthread_mutex_init(&data->forks[i], NULL);
         i++;
     }
+    data->start_time = get_ms();
 }

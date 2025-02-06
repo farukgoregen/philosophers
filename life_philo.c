@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:44:16 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/06 13:17:56 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:44:16 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@ void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	pthread_mutex_lock(philo->data->n);
-	printf("%d took the left fork\n", philo->id);
+	printf("%d %lu took the left fork\n", philo->id, get_ms() - philo->data->start_time);
 	pthread_mutex_unlock(philo->data->n);
 	pthread_mutex_lock(philo->right_fork);
 	pthread_mutex_lock(philo->data->n);
-	printf("%d took the right fork\n", philo->id);
-	printf("%d is eating\n", philo->id);
+	printf("%d %lu took the right fork\n", philo->id, get_ms() - philo->data->start_time);
+	printf("%d %lu is eating\n", philo->id, get_ms() - philo->data->start_time);
 	pthread_mutex_unlock(philo->data->n);
-	philo->last_meal_time = get_ms(philo->data);
+	philo->last_meal_time = get_ms() - philo->data->start_time;
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
-	usleep(philo->data->eating_time * 1000);
 }
 
 void	thinking(t_philo *philo)
@@ -42,7 +41,6 @@ void	sleeping(t_philo *philo)
 	pthread_mutex_lock(philo->data->n);
 	printf("%d is sleeping\n", philo->id);
 	pthread_mutex_unlock(philo->data->n);
-	usleep(philo->data->sleeping_time * 1000);
 }
 
 void	*life_cycle(void *arg)

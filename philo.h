@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:44:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/06 12:21:36 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:17:20 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void    *life_cycle(void *arg);
 void eating(t_philo *philo);
 void thinking(t_philo *philo);
 void sleeping(t_philo *philo);
-unsigned long	get_ms(t_general *p);
+unsigned long	get_ms(void);
 void    philo_dead_check(t_philo *philo);
 #endif
