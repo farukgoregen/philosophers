@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/04 14:46:59 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:25:09 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ void init_philosop(t_general *data)
 
     data->philo = malloc(sizeof(t_philo) * data->number_of_philo);
     data->forks = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
+    data->n = malloc(sizeof(pthread_mutex_t));
     i = 0;
+    pthread_mutex_init(data->n, NULL);
     while(i < data->number_of_philo)
     {
         data->philo[i].id = i + 1;
@@ -88,6 +90,7 @@ void init_philosop(t_general *data)
         data->philo[i].data = data;
         data->philo[i].meals_eaten = 0;
         data->philo[i].last_meal_time = 0;
+        pthread_mutex_init(&data->forks[i], NULL);
         i++;
     }
 }
