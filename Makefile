@@ -1,10 +1,10 @@
 NAME = philo 
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
-SRC = philo.c life_philo.c control_and_init.c \
+SRC = philo.c life_philo.c init.c control.c\
 
 OBJ = $(SRC:.c=.o)
 
