@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 11:49:57 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/09 14:21:19 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:28:15 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	control_philo(char **str)
 	j = 0;
 	while (str[j])
 	{
-		if (ft_atoi(str[j]) <= 0)
+		if (ft_atoi(str[j]) <= 0 || ft_atoi(str[0]) > 200)
 			return (-1);
 		j++;
 	}

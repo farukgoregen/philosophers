@@ -6,13 +6,11 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/09 16:08:56 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:12:42 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-
 
 void	add_philo(char **str, t_general *data)
 {
@@ -46,7 +44,6 @@ void	init_philosop(t_general *data)
 	data->n = malloc(sizeof(pthread_mutex_t));
 	i = 0;
 	pthread_mutex_init(data->n, NULL);
-	data->is_read = 0;
 	while (i < data->number_of_philo)
 	{
 		data->philo[i].id = i + 1;
@@ -57,7 +54,6 @@ void	init_philosop(t_general *data)
 		data->philo[i].meals_eaten = 0;
 		data->philo[i].last_meal_time = 0;
 		pthread_mutex_init(&data->forks[i], NULL);
-		data->is_read++;
 		i++;
 	}
 	data->start_time = get_ms();
