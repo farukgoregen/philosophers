@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 11:49:57 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/22 14:28:15 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:16:09 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
+
 long	ft_atoi(char *str)
 {
 	size_t	i;
@@ -45,8 +46,8 @@ long	ft_atoi(char *str)
 
 int	control_philo(char **str)
 {
-	int j;
-	int i;
+	int	j;
+	int	i;
 
 	j = 0;
 	while (str[j])

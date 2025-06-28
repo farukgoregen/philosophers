@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:38:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/22 14:25:06 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:47:37 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	ms_usleep(size_t ms)
 	}
 }
 
-int	philo_dead_check(t_general *data, int a)
+int	philo_dead_check(t_general *data)
 {
 	int	i;
+	int	finished_count;
 
+	finished_count = 0;
 	i = -1;
 	while (++i < data->number_of_philo)
 	{
@@ -57,32 +59,25 @@ int	philo_dead_check(t_general *data, int a)
 		{
 			data->philo[i].dead = 1;
 			data->is_finish = 1;
-		}
-		pthread_mutex_unlock(data->n);
-		pthread_mutex_lock(data->n);
-		if (data->philo[i].meals_eaten == data->nmeals)
-			a++;
-		pthread_mutex_unlock(data->n);
-		if (data->is_finish == 1 || a == data->number_of_philo)
-		{
-			if (data->philo[i].dead == 1)
-			{
-				pthread_mutex_lock(data->n);
-				printf("%lu %d died\n", (get_ms() - data->start_time),
-					data->philo[i].id);
-				pthread_mutex_unlock(data->n);
-			}
+			printf("%lu %d died\n", (get_ms() - data->start_time),
+				data->philo[i].id);
+			pthread_mutex_unlock(data->n);
 			return (-1);
 		}
+		if (data->nmeals != -1 && data->philo[i].meals_eaten >= data->nmeals)
+			finished_count++;
+		pthread_mutex_unlock(data->n);
 	}
+	if (data->nmeals != -1 && finished_count == data->number_of_philo)
+		return (-1);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	t_general *data;
-	int a;
-	int b;
+	t_general	*data;
+	int			a;
+
 	if ((ac < 5 && ac < 6) || control_philo(&av[1]) == -1)
 		return (-1);
 	data = malloc(sizeof(t_general));
@@ -92,14 +87,14 @@ int	main(int ac, char **av)
 	a = -1;
 	while (1)
 	{
-		b = 0;
-		if (philo_dead_check(data, b) == -1)
+		if (philo_dead_check(data) == -1)
 		{
-			return (1);
+			
+			break;
 		}
+		usleep(1000);
 	}
 	while (++a < data->number_of_philo)
-	{
-		pthread_join(data->philo[a].thread, (void *)&data->philo[a]);
-	}
+				pthread_join(data->philo[a].thread, (void *)&data->philo[a]);
+	
 }

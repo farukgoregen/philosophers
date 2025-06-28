@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/13 10:12:42 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:17:01 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,27 @@ void	add_philo(char **str, t_general *data)
 		else if (j == 3)
 			data->sleeping_time = ft_atoi(str[j]);
 		if (str[4] == NULL)
+		{
+			data->philo_eat_number = -1;
 			data->nmeals = -1;
+		}
 		else if (j == 4)
+		{
+			data->philo_eat_number = 0;
 			data->nmeals = ft_atoi(str[j]);
+		}
 		j++;
 	}
 }
 
 void	init_philosop(t_general *data)
 {
-	int i;
+	int		i;
 
+	i = 0;
 	data->philo = malloc(sizeof(t_philo) * data->number_of_philo);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
 	data->n = malloc(sizeof(pthread_mutex_t));
-	i = 0;
 	pthread_mutex_init(data->n, NULL);
 	while (i < data->number_of_philo)
 	{

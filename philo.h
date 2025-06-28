@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:44:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/22 14:24:03 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/28 13:58:30 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 
 typedef struct s_general
 {
+	int					philo_eat_number;
 	int					is_read;
 	int					number_of_philo;
 	long unsigned		death_time;
@@ -57,7 +58,6 @@ void					eating(t_philo *philo);
 void					thinking(t_philo *philo);
 void					sleeping(t_philo *philo);
 unsigned long			get_ms(void);
-int						philo_dead_check(t_general *data, int a);
 void					ms_usleep(size_t ms);
 int						ft_isdigit(int c);
 void					pthread_free(t_general *data);

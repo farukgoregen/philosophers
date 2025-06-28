@@ -1,7 +1,7 @@
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=thread
 RM = rm -rf
 
 SRC = philo.c life_philo.c init.c control.c

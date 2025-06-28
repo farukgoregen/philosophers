@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 12:44:16 by omgorege          #+#    #+#             */
-/*   Updated: 2025/02/22 14:01:58 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:45:02 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,29 @@ void	*life_cycle(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
+		pthread_mutex_lock(philo->data->n);
+		if (philo->data->is_finish)
+		{
+			pthread_mutex_unlock(philo->data->n);
+			break ;
+		}
+		if (philo->data->nmeals != -1
+			&& philo->meals_eaten >= philo->data->nmeals)
+		{
+			pthread_mutex_unlock(philo->data->n);
+			break ;
+		}
+		pthread_mutex_unlock(philo->data->n);
 		thinking(philo);
 		eating(philo);
 		sleeping(philo);
 	}
 	return (NULL);
 }
+
 void	start_phlosop(t_general *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->number_of_philo)
