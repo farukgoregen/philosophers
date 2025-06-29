@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:23:31 by omgorege          #+#    #+#             */
-/*   Updated: 2025/06/28 14:17:01 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:50:11 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,18 @@ void	init_philosop(t_general *data)
 	}
 	data->start_time = get_ms();
 	data->is_finish = 0;
+}
+
+void	start_phlosop(t_general *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->number_of_philo)
+	{
+		pthread_create(&data->philo[i].thread, NULL, life_cycle,
+			&data->philo[i]);
+		usleep(100);
+		i++;
+	}
 }

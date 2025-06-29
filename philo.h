@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:44:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/06/28 13:58:30 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:59:39 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ long					ft_atoi(char *str);
 void					init_philosop(t_general *data);
 void					start_phlosop(t_general *data);
 void					*life_cycle(void *arg);
-void					eating(t_philo *philo);
-void					thinking(t_philo *philo);
-void					sleeping(t_philo *philo);
+
 unsigned long			get_ms(void);
 void					ms_usleep(size_t ms);
 int						ft_isdigit(int c);
+void					pthread_free(t_general *data);
+int						life_philo_break(t_philo *philo);
 void					pthread_free(t_general *data);
 #endif

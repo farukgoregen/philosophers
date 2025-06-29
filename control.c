@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 11:49:57 by omgorege          #+#    #+#             */
-/*   Updated: 2025/06/28 14:16:09 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:00:02 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,24 @@ int	control_philo(char **str)
 		}
 		j++;
 	}
+	return (0);
+}
+
+int	life_philo_break(t_philo *philo)
+{
+	if (philo->data->number_of_philo == 1)
+		return (1);
+	pthread_mutex_lock(philo->data->n);
+	if (philo->data->is_finish)
+	{
+		pthread_mutex_unlock(philo->data->n);
+		return (1);
+	}
+	if (philo->data->nmeals != -1 && philo->meals_eaten >= philo->data->nmeals)
+	{
+		pthread_mutex_unlock(philo->data->n);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->data->n);
 	return (0);
 }

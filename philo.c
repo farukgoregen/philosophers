@@ -6,7 +6,7 @@
 /*   By: omgorege <omgorege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:38:00 by omgorege          #+#    #+#             */
-/*   Updated: 2025/06/28 14:47:37 by omgorege         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:53:40 by omgorege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	pthread_free(t_general *data)
 		pthread_mutex_destroy(&data->forks[i]);
 	}
 	pthread_mutex_destroy(data->n);
+	free(data->philo);
+	free(data->n);
+	free(data->forks);
 	free(data);
 }
 
@@ -88,13 +91,10 @@ int	main(int ac, char **av)
 	while (1)
 	{
 		if (philo_dead_check(data) == -1)
-		{
-			
-			break;
-		}
+			break ;
 		usleep(1000);
 	}
 	while (++a < data->number_of_philo)
-				pthread_join(data->philo[a].thread, (void *)&data->philo[a]);
-	
+		pthread_join(data->philo[a].thread, (void *)&data->philo[a]);
+	pthread_free(data);
 }
